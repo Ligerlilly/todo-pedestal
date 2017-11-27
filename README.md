@@ -1,6 +1,29 @@
 # todo-again
 
-FIXME
+## Curls
+
+```js
+curl http://localhost:8080/todos -X GET -i
+```
+
+```js
+curl http://localhost:8080/todos -X POST -i -d '{
+    "todo": "hopefully"
+}' -H 'Content-type: application/json'
+```
+
+```js
+curl http://localhost:8080/todos -X PUT -i -d '{
+    "name": "second todo",
+    "id": 46
+}' -H 'Content-type: application/json'
+```
+
+```js
+curl http://localhost:8080/todos -X DELETE -i -d '{
+    "id": 46
+}' -H 'Content-type: application/json'
+```
 
 ## Getting Started
 
