@@ -13,7 +13,7 @@
     (getTodos))
 
 (defn updateTodo [todo]
-    (sql/update! db :todos {:name (get todo "name")} ["id = ?" (get todo "id")])
+    (sql/update! db :todos {:name (get todo :name)} ["id = ?" (get todo :id)])
     (getTodos))
 
 (defn deleteTodo [id]

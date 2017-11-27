@@ -27,7 +27,16 @@
 
 (defn update-todo
   [request]
-  (def id (get request :json-params)))
+  (println (get request :json-params))
+  (let [todo (get request :json-params)
+       todos (api/updateTodo todo)]
+      (ring-resp/response todos)))
+
+(defn delete-todo
+  [request]
+  (let [id (get-in request [:json-params :id])
+        todos (api/deleteTodo id)]
+      (ring-resp/response todos)))
 
 ;; Defines "/" and "/about" routes with their associated :get handlers.
 ;; The interceptors defined after the verb map (e.g., {:get home-page}
@@ -39,6 +48,7 @@
               ["/about" :get (conj common-interceptors `about-page)]
               ["/todos" :get (conj common-interceptors `get-todos)]
               ["/todos" :put (conj common-interceptors `update-todo)]
+              ["/todos" :delete (conj common-interceptors `delete-todo)]
               ["/todos" :post (conj common-interceptors `create-todo)]})
 
 ;; Map-based routes
