@@ -21,9 +21,9 @@
 
 (defn create-todo
   [request]
-  (def newTodo (get request :json-params))
-  (def todos (api/createTodo newTodo))
-  (ring-resp/response todos))
+  (let [newTodo (get request :json-params)
+       todos (api/createTodo newTodo)]
+    (ring-resp/response todos)))
 
 (defn update-todo
   [request]
